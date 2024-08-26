@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Prediction App</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Color Prediction App</h1>
+  
+  <!-- Form to input color counts -->
+  <form action="/submit" method="post">
+    <label for="red">Red:</label>
+    <input type="number" id="red" name="red" min="0" max="6" required>
+    <label for="green">Green:</label>
+    <input type="number" id="green" name="green" min="0" max="6" required>
+    <label for="blue">Blue:</label>
+    <input type="number" id="blue" name="blue" min="0" max="6" required>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Button to predict the next color -->
+  <form action="/predict" method="post">
+    <button type="submit">Predict Next Color</button>
+  </form>
+
+  <% if (typeof prediction !== 'undefined') { %>
+    <h2>Prediction</h2>
+    <p><%= prediction %></p>
+  <% } %>
+
+  <!-- Display previous draws and prediction result -->
+  <% if (typeof draws !== 'undefined' && draws.length > 0) { %>
+    <h2>Previous Draws</h2>
+    <ul>
+      <% draws.forEach(draw => { %>
+        <li>Red: <%= draw.red %>, Blue: <%= draw.blue %>, Green: <%= draw.green %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+
+  
+
+  <!-- Button to clear all data -->
+  <form action="/clear" method="post">
+    <button type="submit">Clear Data</button>
+  </form>
+</body>
+</html>
